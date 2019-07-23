@@ -58,6 +58,25 @@ class BST {
 		 
 	  }
 	  
+	  public boolean findRecursive(TreeNode root, int x){
+		  
+		  TreeNode top = root;
+		  if(top == null) {
+			  return false;
+		  }
+		  else if(top.value >x) {
+			 return findRecursive(top.left,x);
+		  }
+		  else if(top.value < x) {
+			  return findRecursive(top.right,x);
+		  }
+		  else if(top.value == x)
+		  return true;
+		   else return false;
+		  
+		 
+	  }
+	  
 		public static void main(String[] args) {
 			
 			BST bst =new BST();
@@ -70,6 +89,6 @@ class BST {
 			bst.add(7);
 			bst.add(6);
 			
-			System.out.println("found: "+bst.find(8));
+			System.out.println("found: "+bst.findRecursive(bst.root,6));
 		}
 	}
