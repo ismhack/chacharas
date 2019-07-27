@@ -58,6 +58,49 @@ class BST {
 		 
 	  }
 	  
+	  
+	  public TreeNode delete(int x, TreeNode node) {
+		  
+		  if(node == null) {
+			  return node;
+		  }
+		  else if(x< node.value) {
+			  
+			  node.left = delete(x, node.left);
+			  
+		  }
+		  else if(x> node.value ) {
+			  node.right = delete(x, node.right);
+		  }else {
+			  
+			  // node with only one child or no child 
+	            if (node.left == null) 
+	                return node.right; 
+	            else if (node.right == null) 
+	                return node.left; 
+	            
+	            // node with two children: Get the inorder successor (smallest 
+	            // in the right subtree) 
+	            node.value = minValue(node.right); 
+	  
+	            // Delete the inorder successor 
+	            node.right = delete(node.value, node.right); 
+		  }
+		  
+		  return node;
+	  }
+	  
+	   public int minValue(TreeNode root) 
+	    { 
+	        int minv = root.value; 
+	        while (root.left != null) 
+	        { 
+	            minv = root.left.value; 
+	            root = root.left; 
+	        } 
+	        return minv; 
+	    } 
+	  
 	  public boolean findRecursive(TreeNode root, int x){
 		  
 		  TreeNode top = root;
@@ -77,6 +120,16 @@ class BST {
 		 
 	  }
 	  
+	  public void displayOrder(TreeNode node) {
+		  
+		  if(node != null) {
+			  
+			  displayOrder(node.left);
+			  System.out.println(node.value +" ");
+			  displayOrder(node.right);
+		  }
+	  }
+	  
 		public static void main(String[] args) {
 			
 			BST bst =new BST();
@@ -85,10 +138,17 @@ class BST {
 			bst.add(2);
 			bst.add(5);
 			bst.add(10);
+			bst.add(9);
 			bst.add(12);
 			bst.add(7);
 			bst.add(6);
 			
 			System.out.println("found: "+bst.findRecursive(bst.root,6));
+			
+			System.out.println("return delete "+ bst.delete(4, bst.root).value);
+			
+			bst.displayOrder(bst.root);
+			
+			
 		}
 	}

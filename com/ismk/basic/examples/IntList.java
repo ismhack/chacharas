@@ -40,6 +40,62 @@ public class IntList {
 		
 	}
 	
+	public void quickSort( int start, int end) {
+		
+		int partition = partition(arr, start, end);
+		
+		if(partition-1 > start) {
+			quickSort( start, partition -1);
+		}
+		if(partition+1 < end) {
+			quickSort( partition+1, end);
+		}
+		
+	}
+	
+	public boolean search(int x,int start, int end ) {
+		
+		int mid = (end+start)/2;
+		
+		if( mid <= 0) {
+			return false;
+		}
+		
+		if(arr[mid] > x) {
+			return search(x,start, mid-1);
+		}
+		if(arr[mid]< x) {
+			return search(x,mid+1,end);
+		}
+		if(arr[mid]==x) {
+			return true;
+		}
+		else return false;
+		
+	}
+	
+	private int partition(int[] arr, int start, int end) {
+		
+		int pivot = arr[end];
+		for(int i=start; i<end; i++) {
+			
+			if(arr[i] < pivot) {
+			//swap arr[i] for arr[start]
+				int temp = arr[start];
+				arr[start] = arr[i];
+				arr[i] = temp;
+				
+				start++;
+				
+			}
+		}
+		
+		int temp = arr[start];
+		arr[start] = arr[end];
+		arr[end] = temp;
+		return start;
+	}
+	
 	 void printArray() 
 	    { 
 	        int n = num; 
@@ -79,27 +135,29 @@ public class IntList {
 		
 		IntList a= new IntList();
 		
-		a.add(7);
-
-		a.add(8);
-
-		a.add(9);
+		a.add(11);
 
 		a.add(10);
 
-		a.add(1);
+		a.add(8);
 
-		a.add(2);
+		a.add(6);
+
+		a.add(5);
+
+		a.add(9);
 
 		a.add(3);
 		
 		a.add(4);
 		
 		a.printArray();
-		a.sort();
+		a.quickSort(0,7);
 		
 		a.printArray();
 		
+		
+		System.out.println("find "+a.search(11, 0, a.num));
 		
 		System.out.println("median "+a.median());
 
