@@ -1,5 +1,6 @@
 package com.ismk.basic.examples;
 
+
 class BST {
 	  private class TreeNode {
 	      int value;
