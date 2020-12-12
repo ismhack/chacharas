@@ -1,6 +1,6 @@
 package com.ismk.basic.examples;
 
-public class List {
+public class CustomList {
 	
 	
 	
@@ -16,9 +16,9 @@ public class List {
 		}
 	}
 	Node head;
-	public List() {head = null;}
+	public CustomList() {head = null;}
 
-	public static List removeLast(List list) {
+	public CustomList removeLast(CustomList list) {
 		Node current = list.head, prev=null;
 		
 		if(current != null) {
@@ -40,11 +40,11 @@ public class List {
 	}
 	
 	
-	 public static void printList(List list) 
+	 public static void printList(CustomList list) 
 	    { 
 	        Node currNode = list.head; 
 	   
-	        System.out.print("LinkedList: "); 
+	        System.out.println("LinkedList: "); 
 	   
 	        // Traverse through the LinkedList 
 	        while (currNode != null) { 
@@ -54,10 +54,11 @@ public class List {
 	            // Go to next node 
 	            currNode = currNode.next; 
 	        } 
+	        System.out.println();
 	    }
 	 
 	    // Method to insert a new node 
-	    public static List insert(List list, String data) 
+	    public void insert( String data) 
 	    { 
 	        // Create a new node with given data 
 	        Node new_node = new Node(data); 
@@ -65,13 +66,13 @@ public class List {
 	  
 	        // If the Linked List is empty, 
 	        // then make the new node as head 
-	        if (list.head == null) { 
-	            list.head = new_node; 
+	        if (head == null) { 
+	            head = new_node; 
 	        } 
 	        else { 
 	            // Else traverse till the last node 
 	            // and insert the new_node there 
-	            Node last = list.head; 
+	            Node last = head; 
 	            while (last.next != null) { 
 	                last = last.next; 
 	            } 
@@ -80,33 +81,67 @@ public class List {
 	            last.next = new_node; 
 	        } 
 	  
-	        // Return the list by head 
-	        return list; 
+	     
 	    } 
+	    
+	    public void delete(String x) {
+	    	
+	    	 if (head == null) { 
+		            //nothing to delete
+	    		 return;
+		      } 
+	    	 else {
+	    		 
+	    		 Node last = head, prev=null;
+		            while (last != null) { 
+		            	
+		            	if(last.value == x) {
+		            		
+		            		if(last == head) {
+		            			
+		            			head = last.next;
+		            			last = null;
+		            			return;
+		            		}
+		            		
+		            		prev.next = last.next;
+		            		last = null;
+		            		return;
+		            	}
+		            	prev = last; 
+		                last = last.next; 
+		            } 
+	    	 }
+	    	
+	    }
+	    
 	public static void main(String[] args) {
 		
 		
-		List list = new List(); 
+		CustomList list = new CustomList(); 
 		  
         // 
         // ******INSERTION****** 
         // 
   
         // Insert the values 
-        list = insert(list, "a"); 
-        list = insert(list, "b"); 
-        list = insert(list, "c"); 
-        list = insert(list, "d"); 
-        list = insert(list, "f"); 
-        list = insert(list, "g"); 
-        list = insert(list, "h"); 
-        list = insert(list, "i"); 
+        list.insert("a"); 
+        list.insert("b"); 
+        list.insert("c"); 
+        list.insert( "d"); 
+        list.insert( "f"); 
+        list.insert("g"); 
+        list.insert("h"); 
+        list.insert("i"); 
   
         // Print the LinkedList 
         printList(list); 
         
-        list =removeLast(list);
+        list.removeLast(list);
         
+        printList(list);
+        
+        list.delete("a");
         printList(list);
 
 	}

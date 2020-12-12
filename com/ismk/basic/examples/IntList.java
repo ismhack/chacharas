@@ -55,9 +55,9 @@ public class IntList {
 	
 	public boolean search(int x,int start, int end ) {
 		
-		int mid = (end+start)/2;
+		int mid = (end + start)/2;
 		
-		if( mid <= 0) {
+		if( start > end) {
 			return false;
 		}
 		
@@ -71,6 +71,27 @@ public class IntList {
 			return true;
 		}
 		else return false;
+		
+	}
+	
+	public int indexOf(int x,int start, int end ) {
+		
+		int mid = start + (end - start)/2;
+		
+		if( start > end) {
+			return -1;
+		}
+		
+		if(arr[mid] > x) {
+			return indexOf(x,start, mid-1);
+		}
+		if(arr[mid]< x) {
+			return indexOf(x,mid+1,end);
+		}
+		if(arr[mid]==x) {
+			return mid;
+		}
+		else return -1;
 		
 	}
 	
@@ -157,9 +178,15 @@ public class IntList {
 		a.printArray();
 		
 		
-		System.out.println("find "+a.search(11, 0, a.num));
+		System.out.println("find "+a.search(-11, 0, a.num ));
+		System.out.println("indexOf "+a.indexOf(-3, 0, a.num ));
+
 		
 		System.out.println("median "+a.median());
+		
+		
+		for(int i=1; i<100; i *= 2)
+			System.out.println(i);
 
 	}
 

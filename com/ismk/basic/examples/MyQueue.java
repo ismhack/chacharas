@@ -1,7 +1,7 @@
 package com.ismk.basic.examples;
 
 
-public class Queue {
+public class MyQueue {
 	
 	
 static class Node{
@@ -17,7 +17,7 @@ static class Node{
 	}
 	Node top;
 	Node rear;
-	public Queue() {
+	public MyQueue() {
 		top = null;
 		rear = null;
 		}
@@ -63,7 +63,7 @@ static class Node{
 		
 	}
 	
-	 public static void printList(Queue list) 
+	 public static void printList(MyQueue list) 
 	    { 
 	        Node currNode = list.top; 
 	   
@@ -83,13 +83,13 @@ static class Node{
 	public static void main(String[] args) {
 		
 		
-		Queue list = new Queue(); 
+		MyQueue list = new MyQueue(); 
 		
 		  
         // Insert the values 
         list.push("a"); 
         list.push("b"); 
-        //list.push("c"); 
+        list.push("c"); 
         list.push("d"); 
         //list.push("f"); 
         //list.push("g"); 

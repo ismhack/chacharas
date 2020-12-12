@@ -48,6 +48,8 @@ public class Sample1 {
 		System.out.println(new Sample1().validate(new int[] {-10,3,8,2}, 4));
 
 		System.out.println(new Sample1().validate(new int[]{0,99,101,77,87}, 5));
+		System.out.println(new Sample1().validate(new int[]{0,3,8,100}, 4));
+
 		
 		
 	}
